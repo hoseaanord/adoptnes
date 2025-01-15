@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donation Form</title>
+  <style>
+    /* General Body Styling */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #d4a1ff, #b084f7);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+  
+    /* Form Container Styling */
+    .form-container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(128, 0, 255, 0.3);
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      margin: 20px 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+    .form-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(128, 0, 255, 0.5);
+    }
+  
+    .form-container h2 {
+      margin-bottom: 20px;
+      color: #5e2c8a;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+  
+    .form-container label {
+      font-weight: 500;
+      color: #5e2c8a;
+      display: block;
+      margin: 10px 0 5px;
+      text-align: left;
+    }
+  
+    .form-container input,
+    .form-container select,
+    .form-container textarea {
+      width: 98%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #c3a1e6;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #f9f0ff;
+      transition: all 0.3s ease;
+    }
+  
+    .form-container input:focus,
+    .form-container select:focus,
+    .form-container textarea:focus {
+      border-color: #8a2be2;
+      box-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+      outline: none;
+    }
+  
+    .form-container textarea {
+      resize: none;
+    }
+  
+    .form-container input[type="submit"] {
+      background: linear-gradient(135deg, #9a4eff, #c798ff);
+      color: #ffffff;
+      font-weight: bold;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+  
+    .form-container input[type="submit"]:hover {
+      background: linear-gradient(135deg, #c798ff, #9a4eff);
+      transform: scale(1.05);
+    }
+  
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f8eaff;
+      color: #5e2c8a;
+      font-weight: bold;
+      border: 1px solid #c3a1e6;
+      border-radius: 8px;
+      text-align: left;
+      display: none;
+    }
+  
+    .form-container .error {
+      color: #d32f2f;
+      font-size: 14px;
+      text-align: left;
+      margin-bottom: 15px;
+    }
+  </style>
+  
+</head>
+<body>
+  <div class="form-container">
+    <h2>Donation Form</h2>
+    <form id="donationForm">
+      <label for="donationAmount">Donation Amount (USD):</label>
+      <input type="number" id="donationAmount" placeholder="Enter donation amount" required>
+      <span id="amountError" class="error"></span>
+
+      <label for="donationType">Donation Type:</label>
+      <select id="donationType" required>
+        <option value="">-- Select --</option>
+        <option value="One-Time">One-Time</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Yearly">Yearly</option>
+      </select>
+      <span id="typeError" class="error"></span>
+
+      <label for="cause">Cause/Category:</label>
+      <select id="cause">
+        <option value="">-- Select --</option>
+        <option value="Education">Pets Food</option>
+        <option value="Animal Care">Animal Care</option>
+        <option value="Education">Education</option>
+        <option value="Medical Support">Medical Support</option>
+      </select>
+
+      <label for="honorOf">In Honor/Memory Of (Optional):</label>
+      <input type="text" id="honorOf" placeholder="Enter a name">
+
+      <label for="message">Message (Optional):</label>
+      <textarea id="message" rows="4" placeholder="Leave a message or specify instructions"></textarea>
+
+
+      <input type="submit" value="Donate">
+    </form>
+
+    <div class="output" id="output"></div>
+  </div>
+
+  <script>
+    document.getElementById("donationForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Validate inputs
+      let valid = true;
+      const amount = document.getElementById("donationAmount").value.trim();
+      const type = document.getElementById("donationType").value;
+      const output = document.getElementById("output");
+      const amountError = document.getElementById("amountError");
+      const typeError = document.getElementById("typeError");
+
+      // Reset errors
+      amountError.textContent = "";
+      typeError.textContent = "";
+
+      if (!amount || amount <= 0) {
+        valid = false;
+        amountError.textContent = "Please enter a valid donation amount.";
+      }
+
+      if (!type) {
+        valid = false;
+        typeError.textContent = "Please select a donation type.";
+      }
+
+      if (valid) {
+        const donationData = {
+          donationAmount: amount,
+          donationType: type,
+          cause: document.getElementById("cause").value || "General",
+          honorOf: document.getElementById("honorOf").value.trim(),
+          message: document.getElementById("message").value.trim(),
+          anonymous: document.getElementById("anonymous").checked,
+          subscribe: document.getElementById("subscribe").checked,
+        };
+
+        console.log("Donation Data:", donationData);
+
+        // Display success message
+        const thankYouMsg = donationData.anonymous
+          ? "Thank you for your generous donation!"
+          : `Thank you for your generous donation of $${donationData.donationAmount}!`;
+
+        output.textContent = thankYouMsg;
+        output.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>

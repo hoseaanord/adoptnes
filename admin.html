@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: purple;
+            color: white;
+            padding: 15px 20px;
+        }
+
+        header .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        header .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: purple;
+            color: white;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: left 0.3s ease;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 10px 15px;
+            display: block;
+            background-color: rgb(68, 13, 68);
+            border: 2px solid #482880;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #f50298;
+            border-color: #6a1b9a;
+            transform: scale(1.05);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 0;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+            display: none;
+        }
+
+        .main-content.active {
+            display: block;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            margin-bottom: 15px;
+            font-size: 2em;
+            color: purple;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <button class="menu-toggle">☰</button>
+        <div class="admin-info">
+            <img id="admin-profile-picture" src="default-profile.jpg" alt="Admin Profile Picture">
+            <span id="admin-name">Admin</span>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#" data-target="manage-users">Manage Users</a></li>
+            <li><a href="#" data-target="manage-pets">Manage Pets</a></li>
+            <li><a href="#" data-target="adoption-applications">Adoption Applications</a></li>
+            <li><a href="#" data-target="donation-applications">Donation Applications</a></li>
+            <li><a href="#" data-target="approved-rejected">Approved & Rejected Applications</a></li>
+            <li><a href="#" data-target="messages-sent">Messages Sent</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div id="manage-users" class="main-content">
+        <section class="section">
+            <h2>Manage Users</h2>
+            <p>View and manage user accounts.</p>
+        </section>
+    </div>
+
+    <div id="manage-pets" class="main-content">
+        <section class="section">
+            <h2>Manage Pets</h2>
+            <p>Add, edit, or remove pets available for adoption.</p>
+        </section>
+    </div>
+
+    <div id="adoption-applications" class="main-content">
+        <section class="section">
+            <h2>Adoption Applications</h2>
+            <p>Review and process adoption applications.</p>
+        </section>
+    </div>
+
+    <div id="donation-applications" class="main-content">
+        <section class="section">
+            <h2>Donation Applications</h2>
+            <p>Manage donations and their details.</p>
+        </section>
+    </div>
+
+    <div id="approved-rejected" class="main-content">
+        <section class="section">
+            <h2>Approved & Rejected Applications</h2>
+            <p>View the list of approved and rejected applications.</p>
+        </section>
+    </div>
+
+    <div id="messages-sent" class="main-content">
+        <section class="section">
+            <h2>Messages Sent</h2>
+            <p>View messages sent by the admin.</p>
+        </section>
+    </div>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const mainContents = document.querySelectorAll('.main-content');
+        const sidebarLinks = document.querySelectorAll('.sidebar ul li a');
+
+        // Toggle Sidebar
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        // Show Content When Sidebar Link Is Clicked
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Hide all sections
+                mainContents.forEach(content => content.classList.remove('active'));
+
+                // Show target section
+                const targetId = link.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.classList.add('active');
+                }
+
+                // Close the sidebar (optional)
+                sidebar.classList.remove('open');
+            });
+        });
+
+        // Dynamic Admin Details
+        const adminName = document.getElementById('admin-name');
+        const adminProfilePicture = document.getElementById('admin-profile-picture');
+
+        // Simulated admin data
+        const adminData = {
+            name: "Admin User",
+            profileImage: "admin-profile.jpg" // Replace with actual uploaded image path
+        };
+
+        // Update admin details dynamically
+        adminName.textContent = adminData.name;
+        adminProfilePicture.src = adminData.profileImage;
+    </script>
+</body>
+
+</html>

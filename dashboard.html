@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: purple;
+            color: white;
+            padding: 15px 20px;
+        }
+
+        header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        header .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: purple;
+            color: white;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: left 0.3s ease;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+
+        .sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 10px 15px;
+    display: block;
+    background-color: rgb(68, 13, 68); /* Default button color */
+    border: 2px solid #482880; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Center align the text */
+    transition: all 0.3s ease; /* Smooth hover effect */
+    cursor: pointer; /* Pointer cursor to indicate clickability */
+}
+
+.sidebar ul li a:hover {
+    background-color: #f50298; /* Change background on hover */
+    border-color: #6a1b9a; /* Change border color on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+
+        /* Main Content */
+        .main-content {
+            margin-left: 0;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+            display: none;
+        }
+
+        .main-content.active {
+            display: block;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2,h4 {
+            margin-bottom: 15px;
+            font-size: 2em;
+            color: purple;
+            text-align: center;
+        }
+
+        /* Form Styling */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: auto;
+}
+
+form label {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #6a1b9a;
+    box-shadow: 0 0 5px rgba(106, 27, 154, 0.5);
+}
+
+form input[type="submit"] {
+    display: inline-block;
+    background: purple;
+    width: 80%;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form input[type="submit"]:hover {
+    background: #f50298;
+    transform: translateY(-2px);
+}
+
+form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: -15px;
+    margin-bottom: 10px;
+}
+
+.output {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f0f4ff;
+    border-left: 4px solid #6a1b9a;
+    color: #333;
+    border-radius: 5px;
+    display: none;
+}
+
+.output.active {
+    display: block;
+}
+
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .profile .details {
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <button class="menu-toggle">☰</button>
+        <div class="user-info">
+            <img id="profile-picture" src="default-profile.jpg" alt="User Profile Picture">
+            <span id="username">John Doe</span>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#" data-target="profile">Profile</a></li>
+            <li><a href="#" data-target="available-pets">Available Pets</a></li>
+            <li><a href="adop.html" data-target="adoption">Adoption</a></li>
+            <li><a href="don.html" data-target="donation">Donation</a></li>
+            <li><a href="#" data-target="applications">My Applications</a></li>
+            <li><a href="#" data-target="settings">Settings</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div id="profile" class="main-content">
+        <section class="section profile">
+            <img id="dashboard-picture" src="default-profile.jpg" alt="User Profile Picture">
+            <div class="details">
+                <h2 id="dashboard-username">John Doe</h2>
+                <p>Welcome to your personalized dashboard!</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="available-pets" class="main-content">
+        <section class="section">
+            <h2>Available Pets</h2>
+            <p>View the list of pets available for adoption near you.</p>
+        </section>
+    </div>
+
+    <div id="adoption" class="main-content">
+        <section class="section">
+                <h2>Adopt a Pet</h2>
+                <form id="adoptionForm">
+                  <label for="petName">Pet Name:</label>
+                  <input type="text" id="petName" placeholder="Enter the pet's name" required>
+            
+                  <label for="petBreed">Pet Breed:</label>
+                  <input type="text" id="petBreed" placeholder="Enter the pet's breed" required>
+            
+                  <label for="petAge">Pet Age:</label>
+                  <input type="number" id="petAge" placeholder="Enter the pet's age in years" required>
+            
+                  <label for="petGender">Pet Gender:</label>
+                  <select id="petGender" required>
+                    <option value="">-- Select --</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+            
+                  <label for="petType">Choose a Pet Type:</label>
+                  <select id="petType" required>
+                    <option value="">-- Select --</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Bird">Bird</option>
+                  </select>
+            
+                  <label for="petColor">Choose a Pet Color:</label>
+                  <select id="petColor" required>
+                    <option value="">-- Select --</option>
+                    <option value="White">White</option>
+                    <option value="Black">Black</option>
+                    <option value="Brown">Brown</option>
+                    <option value="Golden">Golden</option>
+                  </select>
+            
+                  <label for="otherPets">Do you have other pets?</label>
+                    <select id="otherPets" name="otherPets">
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+              
+                    <label for="adoptionExperience">Have you adopted a pet before?</label>
+                    <select id="adoptionExperience" name="adoptionExperience">
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                    <label for="adoptReason">Why do you want to adopt this pet?</label>
+                    <textarea id="adoptReason" name="adoptReason" rows="4" placeholder="Please explain why you'd be a good fit"></textarea>
+                  </fieldset>
+            
+                  <input type="submit" value="Submit">
+                </form>
+            
+                <div class="output" id="output"></div>
+              </div>
+            
+              <script>
+                document.getElementById("adoptionForm").addEventListener("submit", function (e) {
+                  e.preventDefault();
+            
+                  const petName = document.getElementById("petName").value.trim();
+                  const petBreed = document.getElementById("petBreed").value.trim();
+                  const petAge = document.getElementById("petAge").value.trim();
+                  const petGender = document.getElementById("petGender").value;
+                  const petType = document.getElementById("petType").value;
+                  const petColor = document.getElementById("petColor").value;
+            
+                  if (petName && petBreed && petAge && petGender && petType && petColor) {
+                    document.getElementById("output").innerText = 
+                      `Thank you for choosing to adopt! Here are the details you selected:
+                      \nPet Name: ${petName}
+                      \nBreed: ${petBreed}
+                      \nAge: ${petAge} year(s)
+                      \nGender: ${petGender}
+                      \nType: ${petType}
+                      \nColor: ${petColor}`;
+                  } else {
+                    document.getElementById("output").innerText = "Please fill out all fields.";
+                  }
+                });
+              </script>
+        </section>
+    </div>
+
+    <div id="donation" class="main-content">
+        <section class="section">
+            <h2>Donation</h2>
+            <h4>Contribute to our cause and help animals in need.</h4>
+            <form id="donationForm">
+              <label for="donationAmount">Donation Amount (USD):</label>
+              <input type="number" id="donationAmount" placeholder="Enter donation amount" required>
+              <span id="amountError" class="error"></span>
+        
+              <label for="donationType">Donation Type:</label>
+              <select id="donationType" required>
+                <option value="">-- Select --</option>
+                <option value="One-Time">One-Time</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Yearly">Yearly</option>
+              </select>
+              <span id="typeError" class="error"></span>
+        
+              <label for="cause">Cause/Category:</label>
+              <select id="cause">
+                <option value="">-- Select --</option>
+                <option value="Education">Pets Food</option>
+                <option value="Animal Care">Animal Care</option>
+                <option value="Education">Education</option>
+                <option value="Medical Support">Medical Support</option>
+              </select>
+        
+              <label for="honorOf">In Honor/Memory Of (Optional):</label>
+              <input type="text" id="honorOf" placeholder="Enter a name">
+        
+              <label for="message">Message (Optional):</label>
+              <textarea id="message" rows="4" placeholder="Leave a message or specify instructions"></textarea>
+        
+        
+              <input type="submit" value="Donate">
+            </form>
+        
+            <div class="output" id="output"></div>
+          </div>
+        
+          <script>
+            document.getElementById("donationForm").addEventListener("submit", function (e) {
+              e.preventDefault();
+        
+              // Validate inputs
+              let valid = true;
+              const amount = document.getElementById("donationAmount").value.trim();
+              const type = document.getElementById("donationType").value;
+              const output = document.getElementById("output");
+              const amountError = document.getElementById("amountError");
+              const typeError = document.getElementById("typeError");
+        
+              // Reset errors
+              amountError.textContent = "";
+              typeError.textContent = "";
+        
+              if (!amount || amount <= 0) {
+                valid = false;
+                amountError.textContent = "Please enter a valid donation amount.";
+              }
+        
+              if (!type) {
+                valid = false;
+                typeError.textContent = "Please select a donation type.";
+              }
+        
+              if (valid) {
+                const donationData = {
+                  donationAmount: amount,
+                  donationType: type,
+                  cause: document.getElementById("cause").value || "General",
+                  honorOf: document.getElementById("honorOf").value.trim(),
+                  message: document.getElementById("message").value.trim(),
+                  anonymous: document.getElementById("anonymous").checked,
+                  subscribe: document.getElementById("subscribe").checked,
+                };
+        
+                console.log("Donation Data:", donationData);
+        
+                // Display success message
+                const thankYouMsg = donationData.anonymous
+                  ? "Thank you for your generous donation!"
+                  : `Thank you for your generous donation of $${donationData.donationAmount}!`;
+        
+                output.textContent = thankYouMsg;
+                output.style.display = "block";
+              }
+            });
+          </script>
+        </section>
+    </div>
+
+    <div id="applications" class="main-content">
+        <section class="section">
+            <h2>My Applications</h2>
+            <p>Track the status of your adoption applications here.</p>
+        </section>
+    </div>
+
+    <div id="settings" class="main-content">
+        <section class="section">
+            <h2>Settings</h2>
+            <p>Manage your account settings and preferences.</p>
+        </section>
+    </div>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const mainContents = document.querySelectorAll('.main-content');
+        const sidebarLinks = document.querySelectorAll('.sidebar ul li a');
+
+        // Toggle Sidebar
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        // Show Content When Sidebar Link Is Clicked
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Hide all sections
+                mainContents.forEach(content => content.classList.remove('active'));
+
+                // Show target section
+                const targetId = link.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.classList.add('active');
+                }
+
+                // Close the sidebar (optional)
+                sidebar.classList.remove('open');
+            });
+        });
+
+        // Dynamic User Details
+        const profilePicture = document.getElementById('profile-picture');
+        const username = document.getElementById('username');
+        const dashboardPicture = document.getElementById('dashboard-picture');
+        const dashboardUsername = document.getElementById('dashboard-username');
+
+        // Simulated user data from sign-up
+        const userData = {
+            name: "Jane Smith",
+            profileImage: "user-uploaded.jpg" // Replace with actual uploaded image path
+        };
+
+        // Update user details dynamically
+        profilePicture.src = userData.profileImage;
+        dashboardPicture.src = userData.profileImage;
+        username.textContent = userData.name;
+        dashboardUsername.textContent = userData.name;
+    </script>
+</body>
+
+</html>

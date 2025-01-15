@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Pets Adoption</title>
+  <style>
+    /* Your styles from above */
+    /* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: purple;
+  color: white;
+  padding: 10px 20px;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding:  10px 15px;
+  font-size: 18px;
+  display: inline-block;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  background-color: rgb(66, 7, 66)
+}
+nav a:hover{
+  background-color: rgb(224, 170, 224);
+  border-radius: 2px;
+}
+
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+nav a {
+    background-color:  rgb(66, 7, 66);
+    display: inline-block;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+  text-decoration: none;
+  border-radius: 5px;
+  color: white;
+  margin-left: 15px;
+  font-size: 18px;
+
+}
+
+nav a:hover {
+    background-color: #f50298;
+}
+
+main {
+  padding: 20px;
+}
+
+/* Contact Section */
+.contact-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-header h2 {
+  color: purple;
+  font-size: 28px;
+}
+
+.contact-details {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contact-details p {
+  font-size: 18px;
+  color: #555;
+  margin: 5px 0;
+}
+
+.contact-details span {
+  font-weight: bold;
+  color: purple;
+}
+
+.contact-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.contact-form input, .contact-form textarea, .contact-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.contact-form textarea {
+  resize: none;
+  height: 100px;
+}
+
+.contact-form button {
+  background-color: purple;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.contact-form button:hover {
+  background-color: darkviolet;
+}
+
+/* Map Section */
+.map {
+  margin: 40px auto;
+  text-align: center;
+}
+
+.map iframe {
+  width: 100%;
+  max-width: 900px;
+  height: 300px;
+  border: 0;
+  border-radius: 8px;
+}
+
+/* Social Section */
+.social {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.social a {
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.social img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Footer */
+footer {
+  background-color: purple;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.footer-top a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+.footer-icons img {
+  width: 32px;
+  height: 32px;
+  margin: 0 10px;
+  border-radius: 50%;
+}
+
+.footer-bottom p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Back Button -->
+    <button onclick="history.back()" style="padding: 10px 20px; background: white; color: purple; border: none; border-radius: 5px; cursor: pointer;">
+      Back
+    </button>
+
+    <!-- Page Title -->
+    <h1>Contact Us</h1>
+
+    <!-- Navigation Menu -->
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="aarticles.html">Articles</a>
+      <a href="aboutus.html">About us</a>
+      <a href="contactus.html">Contact us</a>
+    </nav>
+  </header>
+
+  <main>
+     Hear from You!</h2>
+        <p>Got questions about pet adoption? Reach out to us, and we’ll get back to you promptly.</p>
+      </div>
+
+      <div class="contact-details">
+        <p><span>Phone:</span> +255 613 499 771</p>
+        <p><span>Email:</span> contact@<section class="contact-container">
+      <div class="contact-header">
+        <h2>We'd Love topetsadoption.com</p>
+        <p><span>Address:</span> 1234 Pets Adoption Street, Kimara</p>
+        <p><span>City:</span> Dar es Salaam</p>
+      </div>
+
+      <!-- Contact Form -->
+      <form class="contact-form" id="contactForm">
+        <div style="flex: 1;">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required>
+        </div>
+        <div style="flex: 1;">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div style="width: 100%;">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+        </div>
+        <div style="width: 100%; text-align: right;">
+          <button type="submit">Send Message</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="map">
+      <h3>Our Location</h3>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.975232564851!2d39.20832841607461!3d-6.792354295835963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c480a70a5a219%3A0x4ed7a6dbbc47710b!2sDar%20es%20Salaam%2C%20Tanzania!5e0!3m2!1sen!2sus!4v1633880530850!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+      </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <a href="#">Shelter & Rescue Registration</a> |
+      <a href="#">Sitemap</a> |
+      <a href="#">Terms of Service</a> |
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div class="footer-icons">
+      <a href="#"><img src="fb.png" alt="Facebook"></a>
+      <a href="#"><img src="x.png" alt="Twitter"></a>
+      <a href="#"><img src="ig.jpeg" alt="Instagram"></a>
+      <a href="#"><img src="ytube.png" alt="YouTube"></a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy;2024 Pets Adoption</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for form submission -->
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      const formData = new FormData(this); // Gather form data
+
+      try {
+        const response = await fetch('/submit-contact', {
+          method: 'POST',
+          body: formData // Send the form data in the request body
+        });
+
+        if (response.ok) {
+          const result = await response.json(); // Parse JSON response
+          alert(result.message || 'Message sent successfully!'); // Alert success message
+          document.getElementById('contactForm').reset(); // Reset the form
+        } else {
+          alert('Error submitting form. Please try again.'); // Alert error if response is not OK
+        }
+      } catch (error) {
+        console.error('Error submitting the form:', error); // Log the error to the console
+        alert('An unexpected error occurred. Please try again later.'); // Alert unexpected error
+      }
+    });
+  </script>
+
+</body>
+</html>

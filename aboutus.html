@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Pets Adoption</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: purple;
+      color: white;
+      padding: 10px 20px;
+    }
+
+    header nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding:  10px 15px;
+      font-size: 18px;
+      display: inline-block;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      background-color: rgb(66, 7, 66)
+    }
+    nav a:hover{
+      background-color: #f50298;
+      border-radius: 2px;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin: 0;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    /* Mission Section */
+    .mission, .vision, .team-leader, .team-member {
+      background: #f1eef1;
+      padding: 30px;
+      margin: 40px auto;
+      max-width: 800px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      border-top-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+    }
+
+    h2 {
+      color: purple;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    .team-members {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .team-member img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 2px solid purple;
+    }
+
+    /* Footer */
+    footer {
+      background-color: purple;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .footer-top a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 14px;
+    }
+
+    .footer-icons img {
+      width: 32px;
+      height: 32px;
+      margin: 0 10px;
+      border-radius: 50%;
+    }
+
+    .footer-bottom p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Back Button -->
+    <button onclick="history.back()" style="padding: 10px 20px; background: white; color: purple; border: none; border-radius: 5px; cursor: pointer;">
+      Back
+    </button>
+
+    <!-- Page Title -->
+    <h1>About Us</h1>
+
+    <!-- Navigation Menu -->
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="aarticles.html">Articles</a>
+      <a href="aboutus.html">About us</a>
+      <a href="contactus.html">Contact us</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Mission Section -->
+    <section class="mission">
+      <h2>Our Mission</h2>
+      <p><strong>Mission:</strong> Our mission is to rescue, rehabilitate, and find loving homes for pets in need. We believe that every pet deserves a chance at a happy, healthy life, and we are committed to making that possible by bringing together caring adopters and loyal pets.</p>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision">
+      <h2>Our Vision</h2>
+      <p><strong>Vision:</strong> Our vision is to create a world where every pet has a loving home, free from neglect and abandonment. Through education, community outreach, and adoption programs, we strive to reduce the number of homeless pets and improve their quality of life.</p>
+    </section>
+
+    <!-- Team Leader Section -->
+    <section class="team-leader">
+      <h2>Our Team Leader</h2>
+      <img src="ivany.jpg" alt="Emily Carter - Team Leader">
+      <p><strong>Name:</strong> Hosea Anord</p>
+      <p><strong>Position:</strong> Founder & Director</p>
+    </section>
+
+    <!-- Team Members Section -->
+    <section class="team">
+      <h2>Our Amazing Team</h2>
+      <div class="team-members">
+        <div class="team-member">
+          <img src="zeel 1.jpg" alt="Michael Green">
+          <p><strong>Name:</strong> Devotha Mwambela</p>
+          <p><strong>Position:</strong> Coordinator</p>
+        </div>
+        <div class="team-member">
+          <img src="lee.jpg" alt="Sarah Johnson">
+          <p><strong>Name:</strong> Llilian Kahimba</p>
+          <p><strong>Position:</strong> Adoption Specialist</p>
+        </div>
+        <div class="team-member">
+          <img src="tedy1.jpg" alt="David Lee">
+          <p><strong>Name:</strong> Theresia Luambano</p>
+          <p><strong>Position:</strong> ICT Manager</p>
+        </div>
+        <div class="team-member">
+          <img src="absai.jpg" alt="Amanda Brown">
+          <p><strong>Name:</strong> Absai</p>
+          <p><strong>Position:</strong> Project manager</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <a href="#">Shelter & Rescue Registration</a> |
+      <a href="#">Sitemap</a> |
+      <a href="#">Terms of Service</a> |
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div class="footer-icons">
+      <a href="#"><img src="fb.png" alt="Facebook"></a>
+      <a href="#"><img src="x.png" alt="Twitter"></a>
+      <a href="#"><img src="ig.jpeg" alt="Instagram"></a>
+      <a href="#"><img src="ytube.png" alt="YouTube"></a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy;2024 Pets Adoption</p>
+    </div>
+  </footer>
+</body>
+</html>
+
+

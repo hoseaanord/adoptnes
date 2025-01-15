@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Adoption Form</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #d4a1ff, #b084f7);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+  
+    .form-container {
+      background: #ffffff;
+      box-shadow: 0 8px 20px rgba(128, 0, 255, 0.3);
+      border-radius: 15px;
+      width: 100%;
+      max-width: 700px;
+      padding: 30px;
+      text-align: center;
+      margin: 20px 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+    .form-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(128, 0, 255, 0.5);
+    }
+  
+    h2 {
+      margin-bottom: 20px;
+      color: #5e2c8a;
+      font-weight: bold;
+      font-size: 1.8rem;
+    }
+  
+    label {
+      display: block;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #5e2c8a;
+      text-align: left;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+  
+    input, select, textarea {
+      width: 98%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #c3a1e6;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #f9f0ff;
+      transition: all 0.3s ease;
+    }
+  
+    input:focus, select:focus, textarea:focus {
+      border-color: #8a2be2;
+      box-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+      outline: none;
+    }
+  
+    textarea {
+      resize: none;
+    }
+  
+    input[type="submit"] {
+      background: linear-gradient(135deg, #9a4eff, #c798ff);
+      color: #ffffff;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 8px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+  
+    input[type="submit"]:hover {
+      background: linear-gradient(135deg, #c798ff, #9a4eff);
+      transform: scale(1.05);
+    }
+  
+    .output {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #5e2c8a;
+      background: #f8eaff;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #c3a1e6;
+      text-align: left;
+    }
+  </style>
+  
+  
+  
+</head>
+<body>
+  <div class="form-container">
+    <h2>Adopt a Pet</h2>
+    <form id="adoptionForm">
+      <label for="petName">Pet Name:</label>
+      <input type="text" id="petName" placeholder="Enter the pet's name" required>
+
+      <label for="petBreed">Pet Breed:</label>
+      <input type="text" id="petBreed" placeholder="Enter the pet's breed" required>
+
+      <label for="petAge">Pet Age:</label>
+      <input type="number" id="petAge" placeholder="Enter the pet's age in years" required>
+
+      <label for="petGender">Pet Gender:</label>
+      <select id="petGender" required>
+        <option value="">-- Select --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+
+      <label for="petType">Choose a Pet Type:</label>
+      <select id="petType" required>
+        <option value="">-- Select --</option>
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+        <option value="Bird">Bird</option>
+      </select>
+
+      <label for="petColor">Choose a Pet Color:</label>
+      <select id="petColor" required>
+        <option value="">-- Select --</option>
+        <option value="White">White</option>
+        <option value="Black">Black</option>
+        <option value="Brown">Brown</option>
+        <option value="Golden">Golden</option>
+      </select>
+
+      <label for="otherPets">Do you have other pets?</label>
+        <select id="otherPets" name="otherPets">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+  
+        <label for="adoptionExperience">Have you adopted a pet before?</label>
+        <select id="adoptionExperience" name="adoptionExperience">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="adoptReason">Why do you want to adopt this pet?</label>
+        <textarea id="adoptReason" name="adoptReason" rows="4" placeholder="Please explain why you'd be a good fit"></textarea>
+      </fieldset>
+
+      <input type="submit" value="Submit">
+    </form>
+
+    <div class="output" id="output"></div>
+  </div>
+
+  <script>
+    document.getElementById("adoptionForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const petName = document.getElementById("petName").value.trim();
+      const petBreed = document.getElementById("petBreed").value.trim();
+      const petAge = document.getElementById("petAge").value.trim();
+      const petGender = document.getElementById("petGender").value;
+      const petType = document.getElementById("petType").value;
+      const petColor = document.getElementById("petColor").value;
+
+      if (petName && petBreed && petAge && petGender && petType && petColor) {
+        document.getElementById("output").innerText = 
+          `Thank you for choosing to adopt! Here are the details you selected:
+          \nPet Name: ${petName}
+          \nBreed: ${petBreed}
+          \nAge: ${petAge} year(s)
+          \nGender: ${petGender}
+          \nType: ${petType}
+          \nColor: ${petColor}`;
+      } else {
+        document.getElementById("output").innerText = "Please fill out all fields.";
+      }
+    });
+  </script>
+</body>
+</html>

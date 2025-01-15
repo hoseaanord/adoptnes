@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdoptNest - Home</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f4f4f9;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background-color: purple;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 10%;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            padding: 15px 10px;
+            background-color: rgb(68, 13, 68);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #f50298;
+        }
+
+       /* Hero Section */
+       .hero {
+        background-image: url('hh.png');
+        background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-form input {
+            padding: 10px;
+            font-size: 1em;
+            width: 60%;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .search-form button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: purple;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-form button:hover {
+            background-color: #f50298;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            background-color: #6a1b9a;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .view-pets-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: purple;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.view-pets-button:hover {
+    background-color: #f50298;
+}
+
+
+        /* Dynamic Pets Section */
+        .dynamic-pets {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 20px;
+            background-color: #fff;
+            gap: 20px;
+        }
+
+        .dynamic-pets .text {
+            flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-right: 20px;
+        }
+
+        .dynamic-pets .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 300px;
+        }
+
+        .dynamic-pets img {
+            width: 90%;
+            max-height: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+        }
+
+        /* Adoption Process Section */
+        .adoption-process {
+            background-color: #f9f9f9;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .adoption-process h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .adoption-process .steps {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .adoption-process .step {
+            flex: 1;
+            max-width: 250px;
+            text-align: center;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .adoption-process .step img {
+            width: 200px;
+            height: 150px;
+            margin-bottom: 10px;
+            border-radius: 2px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: purple;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .footer-icons img {
+            width: 32px;
+            height: 32px;
+            margin: 0 10px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-icons img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <img src="loogo.jpg" alt="AdoptNest Logo" class="logo">
+        <h1>Adoptnest</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="aarticles.html">Articles</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contactus.html">Contact</a></li>
+                <li><a href="dashboard.html">dashboard</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Your Perfect Pet</h1>
+            <p>Search for adoptable pets near you.</p>
+            <form action="#" class="search-form">
+                <input type="text" placeholder="Search by breed or location" />
+                <button type="submit">Search</button>
+            </form>
+            <!-- New Button -->
+            <button class="view-pets-button" onclick="window.location.href='available-pets.html'">View Available Pets</button>
+        </div>
+    </section>
+    
+
+    <!-- Dynamic Pets Section -->
+    <section class="dynamic-pets">
+        <div class="text">
+            <h2>Why Adopt a Pet?</h2>
+            <p>Adopting a pet can bring endless joy to your life. It not only provides a loving home to an animal in need
+                but also allows you to experience the unconditional love and companionship of a furry friend. Start your
+                journey today and make a difference in their lives and yours.</p>
+        </div>
+        <div class="image-container">
+            <img src="m1.jpeg" alt="Pet 1" class="dynamic-image" style="opacity: 1;">
+            <img src="paka A.jpeg" alt="Pet 2" class="dynamic-image" style="opacity: 0;">
+            <img src="m2.png" alt="Pet 3" class="dynamic-image" style="opacity: 0;">
+            <img src="paka.png" alt="Pet 3" class="dynamic-image" style="opacity: 0;">
+        </div>
+    </section>
+
+    <!-- Adoption Process Section -->
+    <section class="adoption-process">
+        <h2>Our Adoption Process</h2>
+        <div class="steps">
+            <div class="step">
+                <img src="1a.jpg" alt="Step 1">
+                <p><strong>Step 1:</strong> Browse available pets and find your match.</p>
+            </div>
+            <div class="step">
+                <img src="2a.jpg" alt="Step 2">
+                <p><strong>Step 2:</strong> Submit your adoption application online.</p>
+            </div>
+            <div class="step">
+                <img src="3a.jpg" alt="Step 3">
+                <p><strong>Step 3:</strong> Meet your chosen pet in person.</p>
+            </div>
+            <div class="step">
+                <img src="4a.jpg" alt="Step 4">
+                <p><strong>Step 4:</strong> Complete the adoption process and bring your new friend home.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-icons">
+            <img src="fb.png" alt="Facebook">
+            <img src="x.png" alt="Twitter">
+            <img src="ig.jpeg" alt="Instagram">
+        </div>
+        <p>&copy; 2025 AdoptNest. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for dynamic image change
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.dynamic-image');
+
+        function changeImage() {
+            images[currentImageIndex].style.opacity = 0; // Hide current image
+            currentImageIndex = (currentImageIndex + 1) % images.length; // Move to next image
+            images[currentImageIndex].style.opacity = 1; // Show next image
+        }
+
+        setInterval(changeImage, 3000); // Change image every 3 seconds
+    </script>
+</body>
+
+</html>
